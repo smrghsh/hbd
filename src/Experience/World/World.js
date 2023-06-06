@@ -65,7 +65,7 @@ export default class World
             });
             const geometry = new THREE.BufferGeometry().setFromPoints( points );
             // const backbone1 = new THREE.Line( geometry, material );
-            const backbone1 = new THREE.Points(geometry,this.material)
+            const backbone1 = new THREE.Mesh(geometry,this.material)
             // const backbone2 = new THREE.Line( geometry, material2 );
             const backbone2 = new THREE.Points( geometry, this.material2 );
             // line2.position.z += 8.0;
@@ -92,10 +92,11 @@ export default class World
     }
     update() {
         if (this.ready){
-            this.material.uniforms.uTime.value = this.experience.time.elapsed /1000
-            this.material2.uniforms.uTime.value = this.experience.time.elapsed/1000
-            this.material.uniforms.amplitude.value = 1.0 + 0.2 * Math.sin(this.experience.time.elapsed/4000)
-            this.material2.uniforms.amplitude.value = 1.0 + 0.2 * Math.sin(this.experience.time.elapsed/4000)
+            let t = Date.now () - this.experience.time.start 
+            this.material.uniforms.uTime.value = t/1000
+            this.material2.uniforms.uTime.value = t/1000
+            this.material.uniforms.amplitude.value = 1.0 + 0.2 * Math.sin(t/4000)
+            this.material2.uniforms.amplitude.value = 1.0 + 0.2 * Math.sin(t/4000)
         }
         // this.circles.update()
 
