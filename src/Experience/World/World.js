@@ -30,14 +30,14 @@ export default class World
             console.log('resources ready')
             // this.test = new Test()
             this.stars = new Stars()
-            const lineLength = 17
+            const lineLength = 5
             const points = [];
             const size = [];
             const thickness = 0.20
             const speed = 1.0
             const amplitude = 1.0
             const DNA = new THREE.Group()
-            for (let i = -lineLength; i < lineLength; i+=0.1*Math.random()) {
+            for (let i = -lineLength; i < lineLength; i+=0.05*Math.random()) {
                 points.push( new THREE.Vector3( Math.random()*thickness, Math.random()*thickness, i) );
             }
             this.material = new THREE.ShaderMaterial({
@@ -72,12 +72,12 @@ export default class World
             DNA.add(backbone1)
             DNA.add(backbone2)
             DNA.rotation.x += 1.111111
-            
+            DNA.scale.set(0.5,0.5,0.5)
 
 
-            for(let i = 0; i < 4; i+= 0.09){
+            for(let i = 0; i < 4; i+= 0.12){
                 var DNA2 = DNA.clone()
-                DNA2.position.y +=i
+                DNA2.position.y +=i/10.
                 DNA2.rotation.y += Math.random()
                 DNA2.rotation.x +=  1.0 *  (Math.random() - 0.0) + i/4
                 // DNA2.rotation.z +=  Math.PI
