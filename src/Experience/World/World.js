@@ -23,6 +23,7 @@ export default class World
         // this.circles = new Circles()
         // this.hypercube = new Hypercube()
         // Wait for resources
+        this.ready = false;
         this.resources.on('ready', () =>
         {
             // Setup
@@ -86,9 +87,16 @@ export default class World
             // this.sushi = new Sushi()
             
             this.environment = new Environment()
+            this.ready = true
         })
     }
     update() {
+        if (this.ready){
+            this.material.uniforms.uTime.value = this.experience.time.elapsed /1000
+            this.material2.uniforms.uTime.value = this.experience.time.elapsed/1000
+            this.material.uniforms.amplitude.value = 1.0 + 0.2 * Math.sin(this.experience.time.elapsed/4000)
+            this.material2.uniforms.amplitude.value = 1.0 + 0.2 * Math.sin(this.experience.time.elapsed/4000)
+        }
         // this.circles.update()
 
     }
